@@ -52,7 +52,7 @@ namespace game_zone_api.Controllers
             {
                 _context.Gamers.Add(gamer);
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetGamer", new { id = gamer.Id }, gamer);
+                return Ok(gamer);
             }
             else {
                 return Ok("username already exists");
