@@ -13,7 +13,7 @@ public partial class Score
 
     public string Game { get; set; } = null!;
 
-    public int? Score1 { get; set; }
+    public int? GameScore { get; set; }
 
     public virtual Gamer? Gamer { get; set; }
 }
