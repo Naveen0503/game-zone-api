@@ -79,10 +79,17 @@ namespace game_zone_api.Controllers
         {
             var existingScore = _context.Scores.FirstOrDefault(s => s.GamerId == score.GamerId && s.Game == score.Game);
 
-            if (existingScore != null)
+            if (existingScore != null )
             {
-                existingScore.GameScore = score.GameScore;
-                _context.Scores.Update(existingScore);
+                if (existingScore.GameScore < score.GameScore)
+                {
+                    existingScore.GameScore = score.GameScore;
+                    _context.Scores.Update(existingScore);
+                }
+                else
+                {
+
+                }
             }
             else
             {
