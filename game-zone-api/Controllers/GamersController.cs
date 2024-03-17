@@ -29,7 +29,7 @@ namespace game_zone_api.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login(Login gamer)
         {
-            var user = _context.Gamers.Where(u=>u.Name == gamer.Name).Include(g=>g.Scores).FirstOrDefault();
+            var user = _context.Gamers.Where(u=>u.Name == gamer.Name).FirstOrDefault();
             
             if(user == null)
             {
