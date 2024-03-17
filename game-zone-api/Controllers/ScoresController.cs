@@ -77,11 +77,23 @@ namespace game_zone_api.Controllers
         [HttpPost]
         public async Task<ActionResult<Score>> PostScore(Score score)
         {
-            _context.Scores.Add(score);
+            var existingScore = _context.Scores.FirstOrDefault(s => s.GamerId == score.GamerId && s.Game == score.Game);
+
+            if (existingScore != null)
+            {
+                existingScore.GameScore = score.GameScore;
+                _context.Scores.Update(existingScore);
+            }
+            else
+            {
+                _context.Scores.Add(score);
+            }
+
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetScore", new { id = score.Id }, score);
+            return Ok(score);
         }
+
 
         // DELETE: api/Scores/5
         [HttpDelete("{id}")]
