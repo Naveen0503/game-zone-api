@@ -16,4 +16,5 @@ public partial class BidNestContext : DbContext
     }
     public virtual DbSet<Gamer> Gamers { get; set; }
     public virtual DbSet<Score> Scores { get; set; }
+    public virtual DbSet<TictactoeSession> TictactoeSessions { get; set; }
 }
